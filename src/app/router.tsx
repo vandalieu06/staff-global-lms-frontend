@@ -68,4 +68,7 @@ export const routes: RouteObject[] = [
   },
 ]
 
-export const router = createBrowserRouter(routes)
+// En GitHub Pages la app vive en /<repo>/: el router trabaja relativo a esa base.
+export const router = createBrowserRouter(routes, {
+  basename: import.meta.env.BASE_URL.replace(/\/$/, '') || '/',
+})

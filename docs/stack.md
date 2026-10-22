@@ -100,6 +100,11 @@ src/
 
 Cuenta demo: `lucia.fernandez@email.com` / `provisional` (primer acceso: pide cambiarla).
 
+## Despliegue
+
+GitHub Pages mediante GitHub Actions desde la rama `deploy`; base de Vite configurable con
+`BASE_PATH`. Detalle en [despliegue.md](despliegue.md).
+
 ## Scripts
 
 | Script | Acción |

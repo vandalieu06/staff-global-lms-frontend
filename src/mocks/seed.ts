@@ -16,7 +16,8 @@ export const formacionDemo: Formacion = {
 }
 
 const NOTA_MINIMA = 80
-const MATERIALES = '/mock/materiales'
+// Con la base de Vite para que funcione también bajo /<repo>/ en GitHub Pages.
+const MATERIALES = `${import.meta.env.BASE_URL}mock/materiales`
 
 const preguntasCap1: Pregunta[] = [
   {
