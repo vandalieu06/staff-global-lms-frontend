@@ -238,7 +238,9 @@ línea discontinua = acciones secundarias desde Perfil.
 - **Acciones:**
   - Seleccionar una respuesta → activa **Siguiente pregunta** (en la última, **Ver resultado**).
   - *Siguiente* → guarda la respuesta y avanza; no hay «Anterior».
-  - *Salir* → confirma que se perderá el intento y vuelve a 3.1.
+  - *Salir* (o el botón atrás del navegador) → confirma que se perderá el intento y vuelve a 3.1; el intento no cuenta.
+  - Recargar la página conserva la pregunta y las respuestas (intento en `sessionStorage`).
+  - En la última, *Ver resultado* corrige y lleva a 4.3/4.4; en el test final superado, directamente a 4.5.
 - **Reglas:** no se muestra si la respuesta es correcta hasta el final; el orden de las respuestas se mezcla en cada intento.
 - **shadcn:** `RadioGroup` + `Label` (dentro de `fieldset` / `legend`), `Progress`, `Button`, `AlertDialog` (salir).
 
@@ -261,7 +263,7 @@ línea discontinua = acciones secundarias desde Perfil.
 - **Contenido:** etiqueta **Capítulo superado**, porcentaje, aciertos, barra con la nota mínima y el intento en que se superó; tarjeta **Siguiente capítulo desbloqueado**; progreso actualizado del curso.
 - **Acciones:** *Empezar capítulo N+1* → 3.1 del siguiente capítulo; *Volver al temario* → 2.2.
 - **Variante:** si era el último capítulo, la tarjeta presenta el **Test final del curso**.
-- **Pendiente:** decidir si aquí también se muestran las falladas cuando se aprueba sin el 100 %. Propuesta: sí, plegadas.
+- **Falladas al aprobar sin el 100 %:** se muestran plegadas («Preguntas falladas · N»). *Implementado según la propuesta; pendiente de confirmar por Staff.*
 - **shadcn:** `Badge`, `Progress`, `Card`, `Button`.
 
 ### 4.5 Curso aprobado

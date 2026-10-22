@@ -3,7 +3,8 @@
 Referencia del estado actual del producto. `docs/` describe **qué es y cómo funciona** la app;
 los cambios concretos se planifican en `specs/<version>/` (ver `AGENTS.md`).
 
-**Estado:** diseño. Existen los mockups del flujo principal del alumno; no hay código implementado.
+**Estado:** versión 0.1.0 completada — prototipo navegable del flujo del alumno con datos mock y
+progreso en el navegador, sin backend.
 
 | Documento | Contenido |
 | --- | --- |
@@ -14,7 +15,7 @@ los cambios concretos se planifican en `specs/<version>/` (ver `AGENTS.md`).
 | [stack.md](stack.md) | Stack técnico, versiones y decisiones de arquitectura. |
 | [`../DESIGN.md`](../DESIGN.md) | Sistema visual: paleta, tipografía, espaciado, iconos y componentes. |
 
-Plan en curso: [prototipo navegable — specs 0.1.0](../specs/0.1.0/README.md).
+Plan y estado: [prototipo navegable — specs 0.1.0](../specs/0.1.0/README.md).
 
 ## Fuentes
 

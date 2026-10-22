@@ -21,6 +21,9 @@ https://claude.ai/artifact/LVgAGm6TCGkMxiEMvK14vW
 
 Total estimado: **2,5–4 días**. 03 y 04 pueden hacerse en paralelo tras 02.
 
+**Estado (2026-10-22):** las 5 specs están completadas. Queda la prueba en móviles físicos y
+los puntos pendientes de `docs/decisiones.md` §8.
+
 Cada spec se aprueba por separado (`proposed` → `approved`), se implementa y se cierra en un
 commit `(spec NN)` según `AGENTS.md`.
 

@@ -45,7 +45,9 @@ falta confirmarlo).
 | Preguntas paso a paso; **no se puede volver** a la pregunta anterior. | Decidido en diseño (el usuario lo dejó a criterio) |
 | El resultado muestra **principalmente las preguntas falladas**: tu respuesta, la correcta y la explicación. Las acertadas quedan plegadas. | Confirmado |
 | El orden de las respuestas se mezcla (en el contenido fuente la correcta es siempre la primera). | Supuesto |
-| Salir a mitad del test descarta el intento (no se guarda progreso parcial). | Supuesto |
+| Salir a mitad del test (X o botón atrás) pide confirmación y descarta el intento: no cuenta como intento. Recargar la página no lo pierde. | Supuesto |
+| Al aprobar sin el 100 %, las falladas se muestran plegadas en el resultado. | Supuesto (propuesta implementada) |
+| Un test ya superado no se puede repetir; el capítulo queda para repasar materiales. | Supuesto (pendiente de confirmar) |
 
 ## 5. Navegación
 

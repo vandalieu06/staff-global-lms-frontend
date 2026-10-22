@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { conSesion, renderApp } from '@/test/helpers'
 
+// Las rutas del test (4.x) dependen del progreso y se prueban en features/test/test.test.tsx.
 const cases: Array<[path: string, title: string, hasBottomNav: boolean]> = [
   ['/', 'Mis cursos', true],
   ['/perfil', 'Perfil', true],
@@ -17,13 +18,6 @@ const cases: Array<[path: string, title: string, hasBottomNav: boolean]> = [
     'Infografía: fichajes en GlobalApp',
     false,
   ],
-  ['/cursos/dermoconsejera/capitulos/cap-2/test', 'Test del capítulo', false],
-  ['/cursos/dermoconsejera/capitulos/cap-2/test/intento', 'Pregunta', false],
-  ['/cursos/dermoconsejera/capitulos/cap-2/test/resultado', 'Resultado del test', false],
-  ['/cursos/dermoconsejera/test-final', 'Test final del curso', false],
-  ['/cursos/dermoconsejera/test-final/intento', 'Pregunta del test final', false],
-  ['/cursos/dermoconsejera/test-final/resultado', 'Resultado del test final', false],
-  ['/cursos/dermoconsejera/aprobado', 'Has aprobado el curso', false],
 ]
 
 describe('router', () => {

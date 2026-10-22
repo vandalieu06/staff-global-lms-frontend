@@ -14,9 +14,10 @@ const src = resolve(process.cwd(), 'src')
 
 describe('arquitectura', () => {
   it.each(['features', 'components', 'app'])('src/%s no importa de @/mocks', (carpeta) => {
-    const infractores = archivos(join(src, carpeta)).filter((f) =>
-      /from ['"]@\/mocks/.test(readFileSync(f, 'utf8')),
-    )
+    // Los tests sí pueden usar los datos de ejemplo como fixtures.
+    const infractores = archivos(join(src, carpeta))
+      .filter((f) => !/\.test\.tsx?$/.test(f))
+      .filter((f) => /from ['"]@\/mocks/.test(readFileSync(f, 'utf8')))
     expect(infractores).toEqual([])
   })
 })

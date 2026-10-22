@@ -4,7 +4,8 @@ Web app de formación de **Staff Global Group**, pensada para móvil. Los alumno
 clientes y empleados) acceden por invitación, estudian los materiales de cada capítulo (PDF,
 imágenes, vídeo y audio) y superan un test por capítulo para avanzar en el curso.
 
-**Estado:** versión 0.1.0 en curso — prototipo navegable con datos mock, sin backend.
+**Estado:** versión 0.1.0 completada — prototipo navegable con datos mock, sin backend.
+Cuenta demo: `lucia.fernandez@email.com` / `provisional` (el panel de demo está en Perfil).
 Ver [plan y specs](specs/0.1.0/README.md).
 
 ## Stack
