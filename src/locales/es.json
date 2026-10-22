@@ -34,5 +34,12 @@
     "title": "Página no encontrada",
     "body": "La dirección no existe o ya no está disponible.",
     "action": "Ir a Mis cursos"
+  },
+  "demo": {
+    "presets": {
+      "inicio": "Inicio (sin progreso)",
+      "capitulo-2-a-medias": "Capítulo 2 a medias",
+      "curso-aprobado": "Curso aprobado"
+    }
   }
 }

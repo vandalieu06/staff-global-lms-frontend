@@ -84,6 +84,20 @@ src/
   utilidad `bg-brand-gradient`. Botón con tamaños `touch` (48 px) e `icon-touch` (44 px).
 - **Alias** `@/` → `src/`.
 
+## Datos y progreso (0.1.0)
+
+| Pieza | Dónde | Qué hace |
+| --- | --- | --- |
+| Modelo | `src/types/domain.ts` | Formación, curso, capítulo, material, pregunta, test, intento, progreso. |
+| Datos de ejemplo | `src/mocks/seed.ts`, `usuarios.ts` | Curso Dermoconsejera (preguntas reales de los capítulos 1–2) y la cuenta demo. |
+| Capa de datos | `src/api/` | Única puerta de las pantallas a los datos: auth, cursos, tests, demo. Errores tipados y latencia simulada. |
+| Reglas | `src/lib/rules.ts` | Funciones puras: desbloqueo en orden, test tras ver materiales, aciertos necesarios, corrección, progreso, siguiente paso. |
+| Estado persistente | `src/lib/local-store.ts` + `session-store.ts` + `progress-store.ts` | JSON versionado en `localStorage` con hooks `useSyncExternalStore` (`useSesion`, `useProgreso`, `useUsuarioActual`). |
+| Orden de respuestas | `src/lib/shuffle.ts` | Barajado determinista por intento y pregunta. |
+| Presets de demo | `src/mocks/demo-presets.ts` vía `src/api/demo.ts` | «Inicio», «Capítulo 2 a medias», «Curso aprobado» y reinicio completo. |
+
+Cuenta demo: `lucia.fernandez@email.com` / `provisional` (primer acceso: pide cambiarla).
+
 ## Scripts
 
 | Script | Acción |
@@ -93,4 +107,4 @@ src/
 | `pnpm preview` | Sirve el build (`--host`) |
 | `pnpm test` / `pnpm test:watch` | Vitest |
 | `pnpm lint` | oxlint |
-| `pnpm typecheck` | `tsc -b --noEmit` |
+| `pnpm typecheck` | `tsc -b --noEmit` (app, Vite y tests con `tsconfig.test.json`) |

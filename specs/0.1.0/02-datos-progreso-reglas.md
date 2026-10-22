@@ -2,7 +2,7 @@
 code: "02"
 title: "Datos mock, progreso y reglas"
 project: "staff-global-lms"
-status: approved # proposed | approved | in-progress | completed
+status: completed # proposed | approved | in-progress | completed
 version: "0.1.0"
 date: 2026-10-22
 tags: [spec, sdd, datos, reglas]
@@ -11,9 +11,14 @@ affected_files:
   - src/mocks/seed.ts
   - src/mocks/usuarios.ts
   - src/mocks/demo-presets.ts
+  - src/mocks/seed.test.ts
   - src/api/index.ts
   - src/api/auth.ts
   - src/api/cursos.ts
+  - src/api/demo.ts
+  - src/api/errors.ts
+  - src/api/latency.ts
+  - src/lib/local-store.ts
   - src/lib/progress-store.ts
   - src/lib/session-store.ts
   - src/lib/rules.ts
@@ -21,7 +26,14 @@ affected_files:
   - src/lib/rules.test.ts
   - src/lib/progress-store.test.ts
   - src/api/cursos.test.ts
+  - src/test/setup.ts
+  - src/test/arquitectura.test.ts
+  - src/locales/es.json
+  - tsconfig.json
+  - tsconfig.app.json
+  - tsconfig.test.json
   - docs/stack.md
+  - specs/0.1.0/00-changelog.md
 ---
 
 # 02 · Datos mock, progreso y reglas
@@ -101,7 +113,32 @@ Los del frontmatter; `docs/stack.md` añade la sección «Datos y progreso» al 
 
 ## Acceptance criteria
 
-- [ ] El seed reproduce exactamente las preguntas, respuestas y explicaciones del contenido de ejemplo.
-- [ ] Todas las reglas de `decisiones.md` §3–§4 están cubiertas por tests y en verde.
-- [ ] El progreso sobrevive a recargar la página y se reinicia al aplicar un preset.
-- [ ] Ninguna pantalla importa `mocks/` directamente; solo `api/` y los stores.
+- [x] El seed reproduce exactamente las preguntas, respuestas y explicaciones del contenido de ejemplo (`seed.test.ts` lo compara con el markdown).
+- [x] Todas las reglas de `decisiones.md` §3–§4 están cubiertas por tests y en verde.
+- [x] El progreso sobrevive a recargar la página y se reinicia al aplicar un preset.
+- [x] Ninguna pantalla importa `mocks/` directamente; solo `api/` y los stores (`arquitectura.test.ts`).
+
+## Implementation notes
+
+- **`createLocalStore`** (`src/lib/local-store.ts`): utilidad común para sesión, progreso y
+  cuentas: JSON versionado en `localStorage`, validación al leer (si falla, valor inicial),
+  instantánea cacheada para `useSyncExternalStore`, sincronización entre pestañas (`storage`) y
+  copia en memoria si `localStorage` no está disponible.
+- **Claves:** `sgg-lms:v1:sesion`, `sgg-lms:v1:progreso` y `sgg-lms:v1:cuentas` (contraseña
+  cambiada y primer acceso completado, lo que guardaría el backend).
+- **Cuenta demo:** `lucia.fernandez@email.com` / `provisional`. El email no distingue mayúsculas
+  ni espacios.
+- **`api/`** comprueba sesión, curso asignado y desbloqueo como lo haría el backend
+  (`NoAutenticado`, `NoEncontrado`, `Bloqueado`, `CredencialesInvalidas`,
+  `ContrasenaActualIncorrecta`). Latencia de 200–400 ms salvo en tests.
+- **Presets de demo** en `src/mocks/demo-presets.ts`, expuestos a las pantallas por `api/demo.ts`
+  (`aplicarPreset`, `reiniciarDemo`) para respetar la regla de no importar `mocks/`. «Curso
+  aprobado» da por superados de forma sintética los capítulos 3–5 (sin preguntas) y aprueba el
+  test final con 9 de 10.
+- **Capítulos con contenido pendiente:** pueden estar «en curso» pero su test nunca se
+  desbloquea, así que el alumno no avanza más allá hasta que se publiquen.
+- **Materiales del seed** con rutas definitivas y `tamanoBytes: 0` (provisional): la spec 04
+  genera los archivos y ajusta tamaños, páginas y duraciones.
+- **`tsconfig.test.json`:** los tests usan tipos de Node (`node:fs`) sin que entren en el código
+  de la app.
+

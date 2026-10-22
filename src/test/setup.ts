@@ -8,4 +8,6 @@ vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
 
 afterEach(() => {
   cleanup()
+  // Cada test empieza sin sesión ni progreso guardados.
+  localStorage.clear()
 })
