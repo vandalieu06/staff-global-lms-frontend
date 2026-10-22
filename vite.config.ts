@@ -6,6 +6,8 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Ruta base de la app: `/` en local; `/<repo>/` en GitHub Pages (BASE_PATH lo fija el workflow).
+  base: process.env.BASE_PATH ?? '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

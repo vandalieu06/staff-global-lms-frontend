@@ -6,6 +6,10 @@ imágenes, vídeo y audio) y superan un test por capítulo para avanzar en el cu
 
 **Estado:** versión 0.1.0 completada — prototipo navegable con datos mock, sin backend.
 Cuenta demo: `lucia.fernandez@email.com` / `provisional` (el panel de demo está en Perfil).
+
+**Demo publicada:** https://vandalieu06.github.io/staff-global-lms-frontend/ — repo público
+temporal; se migrará al repo privado de la empresa al conectar el backend
+([despliegue](docs/despliegue.md)).
 Ver [plan y specs](specs/0.1.0/README.md).
 
 ## Stack
@@ -38,6 +42,7 @@ pnpm typecheck     # comprobación de tipos
 | [docs/decisiones.md](docs/decisiones.md) | Reglas de negocio y decisiones |
 | [docs/pantallas.md](docs/pantallas.md) | Mapa del flujo y comportamiento de cada pantalla |
 | [docs/stack.md](docs/stack.md) | Stack técnico y arquitectura |
+| [docs/despliegue.md](docs/despliegue.md) | Publicación en GitHub Pages |
 | [DESIGN.md](DESIGN.md) | Sistema visual (paleta, tipografía, componentes) |
 | [specs/](specs/) | Specs por versión (flujo SDD) |
 

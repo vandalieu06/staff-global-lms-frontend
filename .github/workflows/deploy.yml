@@ -1,0 +1,90 @@
+# Despliegue del prototipo en GitHub Pages (spec 0.1.1/01, docs/despliegue.md).
+#
+# - PR hacia `deploy` (solo desde `main`): comprueba lint, tipos, tests y build. No publica.
+# - Push a `deploy` (al fusionar ese PR) o lanzamiento manual: construye y publica en Pages.
+name: Despliegue
+
+on:
+  pull_request:
+    branches: [deploy]
+  push:
+    branches: [deploy]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Un PR cancela sus comprobaciones anteriores; los despliegues nunca se solapan ni se cancelan.
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || 'pages' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # La app se sirve en https://<usuario>.github.io/<repo>/
+  BASE_PATH: /${{ github.event.repository.name }}/
+
+jobs:
+  build:
+    # Este nombre es el check obligatorio de la protección de la rama `deploy`.
+    name: Verificar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Solo se aceptan PR desde main
+        if: github.event_name == 'pull_request' && github.head_ref != 'main'
+        run: |
+          echo "::error::Los PR hacia deploy deben venir de main (este viene de '${{ github.head_ref }}')."
+          exit 1
+
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Tipos
+        run: pnpm typecheck
+
+      - name: Tests
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      # Pages no reescribe rutas: con 404.html = index.html, una URL profunda carga la SPA.
+      - name: Fallback de rutas para GitHub Pages
+        run: cp dist/index.html dist/404.html
+
+      - name: Configurar Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v6
+
+      - name: Subir artefacto
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    name: Publicar
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

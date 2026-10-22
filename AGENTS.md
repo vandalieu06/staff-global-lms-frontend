@@ -13,7 +13,8 @@ mínima), acceso por invitación. Versión actual: **0.1.0**, prototipo con dato
 | Stack, versiones y arquitectura | `docs/stack.md` |
 | Colores, tipografía, componentes | `DESIGN.md` |
 | Datos de ejemplo (formación real) | `docs/contenido-ejemplo/` |
-| Plan y specs de la versión en curso | `specs/0.1.0/README.md` |
+| Plan y specs por versión | `specs/<version>/README.md` |
+| Ramas y publicación | `docs/despliegue.md` |
 | Mockups | https://claude.ai/artifact/LVgAGm6TCGkMxiEMvK14vW |
 
 `docs/` y `DESIGN.md` mandan sobre cualquier suposición. Si el código y la documentación
@@ -44,6 +45,9 @@ spec por completada: tests, lint, typecheck y build en verde.
 - **Textos de interfaz** siempre con `t()` de i18next (`src/locales/es.json`).
 - **Skills del repo** (`.agents/skills/`): `shadcn` para componentes y tema;
   `design-taste-frontend` para criterio visual; `agent-browser` para revisar en el navegador.
+- **Ramas:** se trabaja en `main`; `deploy` es lo publicado en GitHub Pages y solo cambia por PR
+  desde `main` (nunca push directo). Las rutas y URL de recursos deben respetar la base de Vite
+  (`import.meta.env.BASE_URL`), porque en Pages la app vive bajo `/staff-global-lms-frontend/`.
 - **Commits:** mensaje en español con prefijo convencional (`feat:`, `fix:`, `docs:`, `chore:`)
   y `(spec NN)` cuando cierran una spec.
 
