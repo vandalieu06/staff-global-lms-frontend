@@ -1,21 +1,12 @@
-import { render, screen } from '@testing-library/react'
-import { createMemoryRouter, RouterProvider } from 'react-router'
+import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { routes } from './router'
-
-function renderAt(path: string) {
-  const router = createMemoryRouter(routes, { initialEntries: [path] })
-  render(<RouterProvider router={router} />)
-  return router
-}
+import { conSesion, renderApp } from '@/test/helpers'
 
 const cases: Array<[path: string, title: string, hasBottomNav: boolean]> = [
-  ['/login', 'Iniciar sesión', false],
-  ['/primer-acceso', 'Crea tu contraseña', false],
   ['/', 'Mis cursos', true],
   ['/perfil', 'Perfil', true],
   ['/perfil/contrasena', 'Cambiar contraseña', false],
-  ['/cursos/dermoconsejera', 'Curso', false],
+  ['/cursos/dermoconsejera', 'Dermoconsejera', false],
   ['/cursos/dermoconsejera/capitulos/cap-2', 'Capítulo', false],
   ['/cursos/dermoconsejera/capitulos/cap-2/materiales/mat-1', 'Material', false],
   ['/cursos/dermoconsejera/capitulos/cap-2/test', 'Test del capítulo', false],
@@ -29,7 +20,8 @@ const cases: Array<[path: string, title: string, hasBottomNav: boolean]> = [
 
 describe('router', () => {
   it.each(cases)('%s muestra «%s»', async (path, title, hasBottomNav) => {
-    renderAt(path)
+    conSesion()
+    renderApp(path)
 
     expect(await screen.findByRole('heading', { level: 1, name: title })).toBeInTheDocument()
     const nav = screen.queryByRole('navigation', { name: 'Navegación principal' })
@@ -37,8 +29,13 @@ describe('router', () => {
     else expect(nav).not.toBeInTheDocument()
   })
 
+  it('el login es público', async () => {
+    renderApp('/login')
+    expect(await screen.findByRole('heading', { level: 1, name: 'Iniciar sesión' })).toBeInTheDocument()
+  })
+
   it('una ruta desconocida muestra el 404 con enlace a Mis cursos', async () => {
-    renderAt('/no-existe')
+    renderApp('/no-existe')
 
     expect(
       await screen.findByRole('heading', { level: 1, name: 'Página no encontrada' }),
@@ -47,7 +44,8 @@ describe('router', () => {
   })
 
   it('los detalles tienen botón de volver hacia su pantalla padre', async () => {
-    renderAt('/cursos/dermoconsejera/capitulos/cap-2')
+    conSesion()
+    renderApp('/cursos/dermoconsejera/capitulos/cap-2')
 
     expect(await screen.findByRole('link', { name: 'Volver' })).toHaveAttribute(
       'href',

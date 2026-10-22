@@ -25,8 +25,9 @@ y fijadas de forma exacta en `package.json` (sin `^`). Se actualizan solo con un
 | Avisos | `sonner` | 2.0.8 | Tema claro fijo. |
 | i18n | `i18next` + `react-i18next` | 26.5.5 / 17.1.2 | Español; textos en `src/locales/es.json`, tipados. |
 | Lenguaje | `typescript` | 6.0.3 | Ver «TypeScript». |
+| Formularios | `react-hook-form` + `zod` + `@hookform/resolvers` | 7.90.0 / 4.6.7 / 6.0.0 | Con el componente `field` de shadcn. |
 
-Se añaden en specs posteriores: `react-hook-form` + `zod` (03), `react-pdf` (04).
+Se añade en la spec 04: `react-pdf`.
 
 ## Calidad
 

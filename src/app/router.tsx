@@ -1,6 +1,7 @@
 import { createBrowserRouter, type RouteObject } from 'react-router'
 import { RootLayout } from './layouts/RootLayout'
 import { TabsLayout } from './layouts/TabsLayout'
+import { RequireSession } from '@/features/auth/RequireSession'
 import { NotFoundPage } from './NotFoundPage'
 
 /**
@@ -12,44 +13,50 @@ export const routes: RouteObject[] = [
     Component: RootLayout,
     children: [
       { path: 'login', lazy: () => import('@/features/auth/LoginPage') },
-      { path: 'primer-acceso', lazy: () => import('@/features/auth/CambioContrasenaPage') },
       {
-        Component: TabsLayout,
+        // Rutas privadas: requieren sesión y haber cambiado la contraseña provisional.
+        Component: RequireSession,
         children: [
-          { index: true, lazy: () => import('@/features/cursos/MisCursosPage') },
-          { path: 'perfil', lazy: () => import('@/features/perfil/PerfilPage') },
-        ],
-      },
-      { path: 'perfil/contrasena', lazy: () => import('@/features/auth/CambioContrasenaPage') },
-      {
-        path: 'cursos/:cursoId',
-        children: [
-          { index: true, lazy: () => import('@/features/cursos/CursoPage') },
-          { path: 'aprobado', lazy: () => import('@/features/test/CursoAprobadoPage') },
+          { path: 'primer-acceso', lazy: () => import('@/features/auth/CambioContrasenaPage') },
           {
-            path: 'capitulos/:capituloId',
+            Component: TabsLayout,
             children: [
-              { index: true, lazy: () => import('@/features/materiales/CapituloPage') },
+              { index: true, lazy: () => import('@/features/cursos/MisCursosPage') },
+              { path: 'perfil', lazy: () => import('@/features/perfil/PerfilPage') },
+            ],
+          },
+          { path: 'perfil/contrasena', lazy: () => import('@/features/auth/CambioContrasenaPage') },
+          {
+            path: 'cursos/:cursoId',
+            children: [
+              { index: true, lazy: () => import('@/features/cursos/CursoPage') },
+              { path: 'aprobado', lazy: () => import('@/features/test/CursoAprobadoPage') },
               {
-                path: 'materiales/:materialId',
-                lazy: () => import('@/features/materiales/VisorPage'),
+                path: 'capitulos/:capituloId',
+                children: [
+                  { index: true, lazy: () => import('@/features/materiales/CapituloPage') },
+                  {
+                    path: 'materiales/:materialId',
+                    lazy: () => import('@/features/materiales/VisorPage'),
+                  },
+                  {
+                    path: 'test',
+                    children: [
+                      { index: true, lazy: () => import('@/features/test/TestInicioPage') },
+                      { path: 'intento', lazy: () => import('@/features/test/TestIntentoPage') },
+                      { path: 'resultado', lazy: () => import('@/features/test/TestResultadoPage') },
+                    ],
+                  },
+                ],
               },
               {
-                path: 'test',
+                path: 'test-final',
                 children: [
                   { index: true, lazy: () => import('@/features/test/TestInicioPage') },
                   { path: 'intento', lazy: () => import('@/features/test/TestIntentoPage') },
                   { path: 'resultado', lazy: () => import('@/features/test/TestResultadoPage') },
                 ],
               },
-            ],
-          },
-          {
-            path: 'test-final',
-            children: [
-              { index: true, lazy: () => import('@/features/test/TestInicioPage') },
-              { path: 'intento', lazy: () => import('@/features/test/TestIntentoPage') },
-              { path: 'resultado', lazy: () => import('@/features/test/TestResultadoPage') },
             ],
           },
         ],

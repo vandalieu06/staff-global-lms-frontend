@@ -82,6 +82,7 @@ o confirmarse:
 ## 8. Pendiente de definir
 
 - Recuperación de contraseña sin coordinadora (¿flujo por email?).
+- Email o canal de contacto de la coordinadora: el enlace del login abre el correo sin destinatario hasta que Staff lo facilite.
 - Qué ve el alumno si un curso no tiene materiales o el test está «en revisión» (en el contenido fuente aparece ese estado para el administrador).
 - Idiomas concretos además del español y si el contenido de los cursos también se traduce.
 - Notificaciones (curso nuevo asignado, recordatorios).

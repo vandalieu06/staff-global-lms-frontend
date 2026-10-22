@@ -6,7 +6,13 @@
   "common": {
     "back": "Volver",
     "close": "Cerrar",
-    "comingSoon": "Pantalla en construcción"
+    "comingSoon": "Pantalla en construcción",
+    "loading": "Cargando…",
+    "error": "No se ha podido cargar. Inténtalo de nuevo.",
+    "retry": "Reintentar",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "cancel": "Cancelar"
   },
   "nav": {
     "label": "Navegación principal",
@@ -40,6 +46,102 @@
       "inicio": "Inicio (sin progreso)",
       "capitulo-2-a-medias": "Capítulo 2 a medias",
       "curso-aprobado": "Curso aprobado"
+    },
+    "title": "Demo",
+    "body": "Solo en el prototipo: cambia el progreso para enseñar cualquier pantalla.",
+    "applied": "Estado de demo aplicado: {{nombre}}",
+    "reset": "Reiniciar demo",
+    "resetBody": "Borra progreso, contraseña y sesión, y vuelve al login."
+  },
+  "language": {
+    "label": "Idioma",
+    "es": "Español"
+  },
+  "auth": {
+    "login": {
+      "tagline": "Formación para tu día a día en el punto de venta",
+      "title": "Iniciar sesión",
+      "subtitle": "Usa el email y la contraseña que te enviamos en la invitación.",
+      "email": "Email",
+      "password": "Contraseña",
+      "submit": "Entrar",
+      "submitting": "Entrando…",
+      "invalid": "Email o contraseña incorrectos. Revisa los datos de tu invitación.",
+      "emailRequired": "Escribe tu email",
+      "emailInvalid": "Escribe un email válido",
+      "passwordRequired": "Escribe tu contraseña",
+      "help": "¿No puedes acceder?",
+      "contact": "Contacta con tu coordinadora",
+      "contactSubject": "No puedo acceder a la formación de Staff Global"
+    },
+    "password": {
+      "firstTitle": "Crea tu contraseña",
+      "firstBody": "Es tu primer acceso, {{nombre}}. Cambia la contraseña provisional por una que solo conozcas tú.",
+      "changeTitle": "Cambiar contraseña",
+      "changeBody": "Escribe tu contraseña actual y la nueva.",
+      "current": "Contraseña actual",
+      "currentRequired": "Escribe tu contraseña actual",
+      "currentWrong": "La contraseña actual no es correcta",
+      "new": "Nueva contraseña",
+      "repeat": "Repite la contraseña",
+      "requirements": "Requisitos de la contraseña",
+      "reqLength": "Al menos 8 caracteres",
+      "reqMix": "Una mayúscula y un número",
+      "reqMatch": "Las dos contraseñas coinciden",
+      "submitFirst": "Guardar y entrar",
+      "submitChange": "Guardar contraseña",
+      "saving": "Guardando…",
+      "saved": "Contraseña actualizada",
+      "step": "Primer acceso",
+      "reqMet": "cumplido",
+      "reqPending": "pendiente"
     }
+  },
+  "courses": {
+    "inProgress": "En curso · {{count}}",
+    "approved": "Aprobados · {{count}}",
+    "approvedEmpty": "Cuando apruebes un curso aparecerá aquí con tu nota.",
+    "empty": "Todavía no tienes cursos asignados. Staff Global te avisará cuando tengas una formación disponible.",
+    "progress": "{{superados}} de {{total}} superados",
+    "next": "Siguiente",
+    "nextChapter": "Capítulo {{orden}} · {{titulo}}",
+    "nextFinal": "Test final del curso",
+    "continue": "Continuar curso",
+    "start": "Empezar curso",
+    "approvedWith": "Aprobado · {{nota}} % en el test final",
+    "profile": "Ir al perfil",
+    "progressLabel": "Progreso del curso"
+  },
+  "course": {
+    "header": "Curso",
+    "unlockHint": "Supera cada capítulo para abrir el siguiente",
+    "syllabus": "Temario",
+    "chapterTitle": "{{orden}} · {{titulo}}",
+    "meta": "{{materiales}} materiales · test de {{preguntas}} preguntas · {{nota}} % para superar",
+    "passed": "Superado · {{nota}} %",
+    "inProgressMaterials": "En curso · {{vistos}} de {{total}} materiales vistos",
+    "testReady": "En curso · test disponible",
+    "pending": "Contenido pendiente de publicar",
+    "lockedBy": "Se abre al superar el capítulo {{orden}}",
+    "finalTest": "Test final del curso",
+    "finalMeta": "{{preguntas}} preguntas · se abre al superar los {{capitulos}} capítulos",
+    "finalReady": "Disponible · {{preguntas}} preguntas · {{nota}} % para superar",
+    "finalPassed": "Superado · {{nota}} %",
+    "statusPassed": "Superado",
+    "statusLocked": "Bloqueado",
+    "notFound": "Este curso no existe o no lo tienes asignado."
+  },
+  "profile": {
+    "assigned": "Cursos asignados",
+    "approvedCount": "Cursos aprobados",
+    "data": "Mis datos",
+    "fullName": "Nombre y apellidos",
+    "email": "Email",
+    "settings": "Ajustes",
+    "changePassword": "Cambiar contraseña",
+    "logout": "Cerrar sesión",
+    "logoutTitle": "¿Cerrar sesión?",
+    "logoutBody": "Tu progreso queda guardado. Para volver a entrar necesitarás tu email y contraseña.",
+    "logoutConfirm": "Cerrar sesión"
   }
 }

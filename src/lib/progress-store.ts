@@ -28,13 +28,18 @@ export const progressStore = createLocalStore<ProgresoGuardado>(
 
 export const progresoVacio = (): ProgresoCurso => ({ materialesVistos: [], intentos: {} })
 
-const SIN_PROGRESO: ProgresoCurso = Object.freeze({
+export const SIN_PROGRESO: ProgresoCurso = Object.freeze({
   materialesVistos: [],
   intentos: {},
 }) as ProgresoCurso
 
 export function getProgreso(cursoId: string): ProgresoCurso {
   return progressStore.get().cursos[cursoId] ?? SIN_PROGRESO
+}
+
+/** Hook: progreso de todos los cursos, por id. */
+export function useProgresos(): Record<string, ProgresoCurso> {
+  return progressStore.use().cursos
 }
 
 /** Hook: progreso de un curso (referencia estable mientras no cambie). */

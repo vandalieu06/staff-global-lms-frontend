@@ -2,7 +2,7 @@
 code: "03"
 title: "Acceso, Mis cursos y perfil"
 project: "staff-global-lms"
-status: approved # proposed | approved | in-progress | completed
+status: completed # proposed | approved | in-progress | completed
 version: "0.1.0"
 date: 2026-10-22
 tags: [spec, sdd, pantallas, auth]
@@ -17,11 +17,27 @@ affected_files:
   - src/features/cursos/CourseStepper.tsx
   - src/features/perfil/PerfilPage.tsx
   - src/features/perfil/DemoPanel.tsx
+  - src/components/PasswordInput.tsx
+  - src/components/LanguageSelect.tsx
+  - src/components/ProgressBar.tsx
+  - src/components/LoadState.tsx
+  - src/components/ui/button.tsx
+  - src/lib/use-async.ts
+  - src/lib/progress-store.ts
+  - src/lib/utils.ts
+  - src/test/helpers.tsx
+  - src/app/router.test.tsx
+  - .env.example
+  - package.json
+  - pnpm-lock.yaml
   - src/app/router.tsx
   - src/locales/es.json
   - src/features/auth/auth.test.tsx
   - src/features/cursos/cursos.test.tsx
   - docs/pantallas.md
+  - docs/decisiones.md
+  - docs/stack.md
+  - specs/0.1.0/00-changelog.md
 ---
 
 # 03 · Acceso, Mis cursos y perfil
@@ -83,8 +99,30 @@ Los del frontmatter. `docs/pantallas.md` se actualiza al cerrar si cambia algún
 
 ## Acceptance criteria
 
-- [ ] Las 5 pantallas coinciden con los mockups a 390 px (revisión visual lado a lado).
-- [ ] El flujo login → nueva contraseña → Mis cursos → Curso funciona en un móvil real.
-- [ ] Barra inferior solo en Mis cursos y Perfil; áreas táctiles ≥ 44 px; navegable con teclado.
-- [ ] Los presets de demo cambian lo que muestran Mis cursos y Curso sin recargar.
-- [ ] Tests en verde.
+- [x] Las 5 pantallas coinciden con los mockups a 390 px (revisión con `agent-browser` a 390×844).
+- [ ] El flujo login → nueva contraseña → Mis cursos → Curso funciona en un móvil real. *(Recorrido completo hecho en navegador emulando 390 px; queda la prueba en un móvil físico.)*
+- [x] Barra inferior solo en Mis cursos y Perfil; áreas táctiles ≥ 44 px; navegable con teclado.
+- [x] Los presets de demo cambian lo que muestran Mis cursos y Curso sin recargar.
+- [x] Tests en verde (89).
+
+## Implementation notes
+
+- **Formularios** con `react-hook-form` 7.90.0 + `zod` 4.6.7 + `@hookform/resolvers` 6.0.0 y el
+  componente `field` de shadcn (`Field`, `FieldLabel`, `FieldError`).
+- **Carga de datos** con un hook propio `useAsync` (estado carga/éxito/error + `reload`); la
+  reactividad del progreso viene de `useProgreso`/`useProgresos`, así la UI cambia al aplicar un
+  preset sin recargar.
+- **Guardas** como ruta *layout* (`RequireSession`) que envuelve todas las rutas privadas; el 404
+  queda fuera para ser público.
+- **Componentes compartidos nuevos:** `PasswordInput` (mostrar/ocultar, 44 px), `LanguageSelect`
+  (variantes píldora y fila), `ProgressBar` (8 px, `role="progressbar"`), `LoadingState` /
+  `ErrorState`.
+- **Botón deshabilitado** en gris (`muted`) en lugar del morado atenuado de shadcn, según
+  `DESIGN.md`.
+- **«Empezar curso» / «Continuar curso»** según si el alumno ya ha empezado.
+- **Contacto con la coordinadora:** `mailto:` sin destinatario con asunto predefinido hasta tener
+  el email real (anotado en `docs/decisiones.md` §8).
+- **Panel de demo:** activo salvo `VITE_DEMO=false` (los `.env` no se versionan; se documenta en
+  `.env.example`).
+- **Pendiente para Staff:** probar en un móvil físico (Safari iOS y Chrome Android) con
+  `pnpm dev`.

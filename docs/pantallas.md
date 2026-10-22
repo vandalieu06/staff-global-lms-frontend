@@ -138,10 +138,10 @@ línea discontinua = acciones secundarias desde Perfil.
 
 - **Contenido:**
   - Título «Mis cursos» y avatar con iniciales (lleva a Perfil).
-  - Sección **En curso · N**: una tarjeta por curso con formación, nombre del curso, descripción, progreso («1 de 6 superados» + barra), siguiente paso pendiente y botón **Continuar curso**.
+  - Sección **En curso · N**: una tarjeta por curso con formación, nombre del curso, descripción, progreso («1 de 6 superados» + barra), siguiente paso pendiente y botón **Continuar curso** (**Empezar curso** si aún no ha visto ningún material).
   - Sección **Aprobados · N**: cursos terminados; vacía muestra «Cuando apruebes un curso aparecerá aquí».
   - Barra inferior (*Mis cursos* activo, *Perfil*).
-- **Acciones:** *Continuar curso* / tocar la tarjeta → 2.2.
+- **Acciones:** *Continuar curso* / tocar la tarjeta → 2.2. Un curso aprobado se muestra como fila compacta con la nota del test final y también lleva a 2.2.
 - **Estados:** sin cursos asignados (mensaje indicando que Staff le asignará formación); cargando (esqueleto de tarjeta); curso aprobado (tarjeta en la sección Aprobados con la nota).
 - **Cálculo del progreso:** pasos superados / pasos totales, donde cada capítulo y el test final cuentan como un paso.
 - **shadcn:** `Card`, `Progress`, `Button`, `Avatar`, `Badge`.
@@ -166,6 +166,7 @@ línea discontinua = acciones secundarias desde Perfil.
 
 - **Contenido:** avatar con iniciales, nombre y email; resumen *Cursos asignados* / *Cursos aprobados*; **Mis datos** (nombre y apellidos, email, solo lectura porque los gestiona Staff); **Ajustes** (Cambiar contraseña, Idioma); **Cerrar sesión**.
 - **Acciones:** *Cambiar contraseña* → 1.2 (variante con la contraseña actual); *Idioma* → selector; *Cerrar sesión* → confirma y vuelve a 1.1.
+- **Panel de demo (solo prototipo):** al final de Perfil, botones para aplicar los estados «Inicio», «Capítulo 2 a medias» y «Curso aprobado», y «Reiniciar demo» (borra progreso, contraseña y sesión y vuelve al login). Se oculta con `VITE_DEMO=false`.
 - **shadcn:** `Avatar`, `Card`, `Separator`, `Select` / `Sheet` (idioma), `AlertDialog` (cerrar sesión), `Button`.
 
 ---
