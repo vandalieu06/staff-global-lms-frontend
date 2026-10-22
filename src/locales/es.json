@@ -143,5 +143,70 @@
     "logoutTitle": "¿Cerrar sesión?",
     "logoutBody": "Tu progreso queda guardado. Para volver a entrar necesitarás tu email y contraseña.",
     "logoutConfirm": "Cerrar sesión"
+  },
+  "chapter": {
+    "header": "{{curso}} · Capítulo {{orden}} de {{total}}",
+    "intro": "Revisa los {{count}} materiales. Cuando los hayas abierto todos se desbloquea el test del capítulo.",
+    "materials": "Materiales",
+    "seenCount": "{{vistos}} de {{total}} vistos",
+    "seen": "Visto",
+    "pending": "Pendiente",
+    "download": "Descargar {{tipo}}",
+    "pendingContent": "El contenido de este capítulo aún no está publicado. Staff Global te avisará cuando esté disponible.",
+    "locked": "Ese capítulo todavía está bloqueado. Supera el anterior para abrirlo.",
+    "notFound": "Este capítulo no existe.",
+    "test": {
+      "title": "Test del capítulo",
+      "conditions": "{{preguntas}} preguntas · necesitas un {{nota}} % ({{aciertos}} aciertos) para superarlo.",
+      "progressLabel": "Materiales vistos",
+      "lockedButton_one": "Abre el material pendiente",
+      "lockedButton_other": "Abre los {{count}} materiales pendientes",
+      "start": "Hacer el test",
+      "passed": "Superado con un {{nota}} %",
+      "passedBody": "Puedes repasar los materiales cuando quieras."
+    }
+  },
+  "material": {
+    "types": {
+      "pdf": "PDF",
+      "imagen": "Imagen",
+      "video": "Vídeo",
+      "audio": "Audio"
+    },
+    "typesLower": {
+      "pdf": "PDF",
+      "imagen": "imagen",
+      "video": "vídeo",
+      "audio": "audio"
+    },
+    "pages": "{{count}} páginas",
+    "duration": "{{duracion}} min",
+    "position": "Material {{n}} de {{total}}",
+    "markOnEnd": "Se marcará como visto cuando llegues al final.",
+    "next": "Siguiente material",
+    "allSeenTitle": "Has revisado los {{count}} materiales.",
+    "allSeenBody": "El test del capítulo ya está disponible.",
+    "goToTest": "Ir al test del capítulo",
+    "backToChapter": "Volver al capítulo",
+    "notFound": "Este material no existe.",
+    "pdf": {
+      "page": "{{actual}} / {{total}}",
+      "prevPage": "Página anterior",
+      "nextPage": "Página siguiente",
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "loading": "Cargando documento…",
+      "error": "No se ha podido abrir el PDF. Puedes descargarlo.",
+      "pageLabel": "Página {{n}}"
+    },
+    "player": {
+      "play": "Reproducir",
+      "pause": "Pausar",
+      "replay": "Reproducir de nuevo",
+      "position": "Posición",
+      "back15": "Retroceder 15 segundos",
+      "speed": "Velocidad de reproducción: {{velocidad}}×",
+      "error": "No se ha podido reproducir. Puedes descargarlo."
+    }
   }
 }

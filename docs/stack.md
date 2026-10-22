@@ -26,8 +26,7 @@ y fijadas de forma exacta en `package.json` (sin `^`). Se actualizan solo con un
 | i18n | `i18next` + `react-i18next` | 26.5.5 / 17.1.2 | Español; textos en `src/locales/es.json`, tipados. |
 | Lenguaje | `typescript` | 6.0.3 | Ver «TypeScript». |
 | Formularios | `react-hook-form` + `zod` + `@hookform/resolvers` | 7.90.0 / 4.6.7 / 6.0.0 | Con el componente `field` de shadcn. |
-
-Se añade en la spec 04: `react-pdf`.
+| Visor PDF | `react-pdf` + `pdfjs-dist` | 11.0.0 / 6.3.289 | Worker servido desde `node_modules`; chunk perezoso. |
 
 ## Calidad
 
@@ -95,6 +94,7 @@ src/
 | Reglas | `src/lib/rules.ts` | Funciones puras: desbloqueo en orden, test tras ver materiales, aciertos necesarios, corrección, progreso, siguiente paso. |
 | Estado persistente | `src/lib/local-store.ts` + `session-store.ts` + `progress-store.ts` | JSON versionado en `localStorage` con hooks `useSyncExternalStore` (`useSesion`, `useProgreso`, `useUsuarioActual`). |
 | Orden de respuestas | `src/lib/shuffle.ts` | Barajado determinista por intento y pregunta. |
+| Materiales de muestra | `public/mock/materiales/` + `scripts/generar-materiales-mock.sh` | PDF, PNG, MP4 y MP3 generados con Chromium headless y ffmpeg (1,4 MB). |
 | Presets de demo | `src/mocks/demo-presets.ts` vía `src/api/demo.ts` | «Inicio», «Capítulo 2 a medias», «Curso aprobado» y reinicio completo. |
 
 Cuenta demo: `lucia.fernandez@email.com` / `provisional` (primer acceso: pide cambiarla).

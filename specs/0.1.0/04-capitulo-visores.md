@@ -2,7 +2,7 @@
 code: "04"
 title: "Capítulo y visores de materiales"
 project: "staff-global-lms"
-status: approved # proposed | approved | in-progress | completed
+status: completed # proposed | approved | in-progress | completed
 version: "0.1.0"
 date: 2026-10-22
 tags: [spec, sdd, pantallas, materiales]
@@ -16,6 +16,20 @@ affected_files:
   - src/features/materiales/VideoPlayer.tsx
   - src/features/materiales/AudioPlayer.tsx
   - src/features/materiales/download.ts
+  - src/features/materiales/usePlayer.ts
+  - src/components/ui/slider.tsx
+  - src/lib/format.ts
+  - scripts/materiales/*
+  - src/mocks/seed.test.ts
+  - src/test/setup.ts
+  - src/test/helpers.tsx
+  - src/app/router.tsx
+  - src/app/router.test.tsx
+  - vite.config.ts
+  - package.json
+  - pnpm-lock.yaml
+  - docs/stack.md
+  - specs/0.1.0/00-changelog.md
   - src/mocks/seed.ts
   - public/mock/materiales/*
   - scripts/generar-materiales-mock.sh
@@ -85,8 +99,32 @@ Los del frontmatter. `seed.ts` añade las rutas, tamaños y duraciones de los ma
 
 ## Acceptance criteria
 
-- [ ] Los 4 tipos se previsualizan dentro de la app y se pueden descargar.
-- [ ] La regla de «visto» se cumple para cada tipo y desbloquea el test al completarse.
-- [ ] Las pantallas coinciden con los mockups 3.1–3.4 a 390 px.
-- [ ] El script regenera las muestras; el peso total es < 5 MB.
-- [ ] Tests en verde.
+- [x] Los 4 tipos se previsualizan dentro de la app y se pueden descargar.
+- [x] La regla de «visto» se cumple para cada tipo y desbloquea el test al completarse.
+- [x] Las pantallas coinciden con los mockups 3.1–3.4 a 390 px (revisión con `agent-browser`; la barra del PDF se movió arriba, ver notas).
+- [x] El script regenera las muestras; el peso total es < 5 MB (1,4 MB).
+- [x] Tests en verde (99).
+- [ ] Prueba manual en Safari iOS y Chrome Android (pendiente, requiere dispositivos físicos).
+
+## Implementation notes
+
+- **Materiales de muestra** (`public/mock/materiales/`, 1,4 MB): 2 PDF de 4 páginas, 2 infografías
+  PNG 1080×1350, 2 vídeos MP4 y 2 audios MP3 de 20 s. Fuentes HTML en `scripts/materiales/`
+  (texto sacado de las explicaciones del contenido de ejemplo y marcado «Material de muestra»).
+  `scripts/generar-materiales-mock.sh` los regenera con Chromium headless y ffmpeg.
+- **El seed usa los tamaños reales** y `seed.test.ts` comprueba que cada archivo existe y pesa lo
+  que dice el seed (al regenerar, hay que actualizar `tamanoBytes`).
+- **PDF:** `react-pdf` 11.0.0 + `pdfjs-dist` 6.3.289 (misma versión que usa react-pdf, para servir
+  el worker desde `node_modules`, sin CDN). El visor se carga con `lazy` (chunk de ≈630 kB solo al
+  abrir un PDF; `chunkSizeWarningLimit` a 700 kB). Paginador sincronizado con el scroll por
+  `IntersectionObserver`; zoom 100/150/200 %. **La barra del PDF va bajo la cabecera** (en el
+  mockup estaba abajo) para que el pie sea igual en todos los visores.
+- **Vídeo y audio:** elementos nativos con controles propios (`usePlayer`); el `Slider` de shadcn
+  admite ahora `thumbLabel` y `thumbValueText` para lectores de pantalla.
+- **Pie del visor:** siguiente material pendiente → o «Ir al test» con aviso verde cuando ya están
+  todos vistos → o «Volver al capítulo».
+- **Tests:** `PdfViewer` se sustituye por un doble en jsdom (sin canvas ni workers); se añadió un
+  sustituto de `ResizeObserver` al setup.
+- **Errores encontrados en la revisión con navegador y corregidos:** el icono de «reproducir de
+  nuevo» se pintaba relleno; aviso de React Router por falta de `HydrateFallback`.
+

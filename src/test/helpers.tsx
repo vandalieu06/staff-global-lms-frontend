@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { cuentasStore } from '@/api/auth'
@@ -24,4 +24,13 @@ export function renderApp(path: string) {
   const user = userEvent.setup()
   render(<RouterProvider router={router} />)
   return { router, user }
+}
+
+/** Espera a que exista un elemento que no tiene rol accesible (p. ej. `<video>`). */
+export function esperarElemento<T extends Element>(selector: string): Promise<T> {
+  return waitFor(() => {
+    const el = document.querySelector<T>(selector)
+    if (!el) throw new Error(`No aparece ${selector}`)
+    return el
+  })
 }

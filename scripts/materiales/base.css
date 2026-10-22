@@ -1,0 +1,44 @@
+/* Estilo común de los materiales de muestra (paleta de DESIGN.md). */
+@font-face {
+  font-family: "Inter";
+  src: url("../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: "Inter", system-ui, sans-serif; color: #111827; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.marca { color: #8646b9; font-weight: 700; }
+.muestra { color: #6b7280; font-size: 11px; }
+
+/* Documento PDF A4 */
+@page { size: A4; margin: 22mm 20mm; }
+.doc h1 { font-size: 26px; line-height: 1.15; letter-spacing: -0.02em; margin: 8px 0 18px; }
+.doc h2 { font-size: 17px; margin: 22px 0 8px; }
+.doc p, .doc li { font-size: 12.5px; line-height: 1.6; color: #374151; }
+.doc ul { padding-left: 18px; }
+.doc .cabecera { display: flex; justify-content: space-between; font-size: 11px; border-bottom: 2px solid #8646b9; padding-bottom: 8px; }
+.doc .pagina { page-break-after: always; }
+.doc .pagina:last-child { page-break-after: auto; }
+.doc .clave { background: #f4edfb; border-radius: 10px; padding: 12px 14px; margin: 14px 0; }
+.doc .clave p { margin: 0; color: #5b2d85; }
+.doc .portada { height: 240mm; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; }
+.doc .portada .franja { height: 10px; background: #8646b9; width: 120px; border-radius: 5px; }
+.doc .portada h1 { font-size: 40px; }
+
+/* Infografía 1080×1350 */
+.info { width: 1080px; height: 1350px; background: #f9fafb; padding: 72px; display: flex; flex-direction: column; gap: 36px; }
+.info h1 { font-size: 64px; line-height: 1.05; letter-spacing: -0.03em; margin: 0; }
+.info .lead { font-size: 30px; line-height: 1.4; color: #374151; margin: 0; }
+.info .pasos { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.info .paso { background: #fff; border: 2px solid #e5e7eb; border-radius: 24px; padding: 28px 32px; display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; }
+.info .num { width: 72px; height: 72px; border-radius: 36px; background: #8646b9; color: #fff; font-size: 34px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.info .paso.no .num { background: #dc2626; }
+.info .paso b { display: block; font-size: 32px; margin-bottom: 6px; }
+.info .paso span { font-size: 26px; line-height: 1.4; color: #374151; }
+.info .pie { margin-top: auto; display: flex; justify-content: space-between; font-size: 22px; }
+
+/* Tarjeta de vídeo 1280×720 */
+.tarjeta { width: 1280px; height: 720px; background: linear-gradient(90deg, #8646b9, #2976c6); color: #fff; padding: 80px; display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; }
+.tarjeta .sup { font-size: 28px; font-weight: 600; opacity: .9; }
+.tarjeta h1 { font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; margin: 0; max-width: 1000px; }
+.tarjeta .muestra { color: #e5d4f5; font-size: 22px; }

@@ -182,6 +182,7 @@ línea discontinua = acciones secundarias desde Perfil.
   - **Materiales** («X de Y vistos»): una fila por material con icono de tipo, título, tipo y peso o duración, y el estado *Visto* o *Pendiente*. Botón de descarga a la derecha.
   - Tarjeta **Test del capítulo**: nº de preguntas, nota mínima y aciertos necesarios, barra de materiales vistos y botón.
 - **Acciones:** tocar un material → su visor (3.2, 3.3 o 3.4); *Descargar* → descarga el archivo original; *Hacer el test* → 4.1.
+- **Capítulo bloqueado por URL:** vuelve al temario con un aviso. Capítulo con contenido pendiente: mensaje «aún no está publicado».
 - **Estados del test:**
   - **Bloqueado:** quedan materiales sin ver; el botón está deshabilitado e indica «Abre los N materiales pendientes».
   - **Disponible:** botón «Hacer el test».
@@ -193,10 +194,11 @@ línea discontinua = acciones secundarias desde Perfil.
 
 **Objetivo:** leer el documento sin salir de la app.
 
-- **Contenido:** cabecera con *Cerrar*, título, tipo y nº de páginas, y *Descargar*; páginas del PDF en scroll; barra inferior con página anterior/siguiente («3 / 12») y zoom.
+- **Contenido:** cabecera «Material N de M» con *Cerrar* y *Descargar*; título y tipo; páginas del PDF en scroll al ancho de pantalla; barra fija bajo la cabecera con página anterior/siguiente («3 / 12», sigue al scroll) y zoom (100 / 150 / 200 %). *En el mockup la barra estaba abajo; se movió arriba para dejar el pie a la acción de «Siguiente material» / «Ir al test», común a todos los visores.*
 - **Imagen:** misma pantalla sin paginación, con zoom por gesto (pinch).
 - **Marca de visto:** al abrir el material.
-- **shadcn:** `Button`; renderizado con un visor de PDF (p. ej. `react-pdf` / pdf.js).
+- **Pie (todos los visores):** si con este material ya están todos vistos y el test no está superado → aviso verde e **Ir al test del capítulo**; si no → **Siguiente material** (el siguiente pendiente); si no quedan → **Volver al capítulo**.
+- **shadcn:** `Button`; PDF con `react-pdf` (pdf.js), cargado solo al abrir un PDF.
 
 ### 3.3 Visor · vídeo
 
@@ -210,7 +212,7 @@ línea discontinua = acciones secundarias desde Perfil.
 
 **Objetivo:** escuchar el audio del capítulo.
 
-- **Contenido:** portada plana en color de marca con el título; tiempo y barra de posición; controles *retroceder 15 s*, *play/pausa*, *velocidad (1×, 1,5×, 2×)*.
+- **Contenido:** portada plana en color de marca con el título; tiempo y barra de posición; controles *retroceder 15 s*, *play/pausa* (*reproducir de nuevo* al terminar), *velocidad (1×, 1,5×, 2×)*; aviso «Se marcará como visto cuando llegues al final».
 - **Al terminar el último material pendiente:** aviso verde «Has revisado los N materiales» y botón **Ir al test del capítulo** (→ 4.1).
 - **Marca de visto:** al reproducir hasta el final.
 - **shadcn:** `Slider`, `Button`, `Alert`.

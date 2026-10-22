@@ -11,6 +11,8 @@ import { NotFoundPage } from './NotFoundPage'
 export const routes: RouteObject[] = [
   {
     Component: RootLayout,
+    // SPA sin SSR: nada que mostrar mientras se carga la primera ruta perezosa.
+    HydrateFallback: () => null,
     children: [
       { path: 'login', lazy: () => import('@/features/auth/LoginPage') },
       {

@@ -12,6 +12,10 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  build: {
+    // pdf.js (≈630 kB) va en su propio chunk y solo se descarga al abrir un PDF (spec 04).
+    chunkSizeWarningLimit: 700,
+  },
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],

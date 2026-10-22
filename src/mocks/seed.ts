@@ -164,15 +164,15 @@ const preguntasCap2: Pregunta[] = [
   },
 ]
 
-// Materiales de muestra: los archivos los genera la spec 04 (scripts/generar-materiales-mock.sh),
-// que ajustará tamaños, páginas y duraciones a los reales.
+// Materiales de muestra generados por scripts/generar-materiales-mock.sh (spec 04). Tamaños,
+// páginas y duraciones son los de los archivos reales (lo comprueba seed.test.ts).
 const materialesCap1: Material[] = [
   {
     id: 'cap-1-pdf',
     tipo: 'pdf',
     titulo: 'Procedimiento operativo SGG',
     url: `${MATERIALES}/cap-1-procedimiento-operativo.pdf`,
-    tamanoBytes: 0,
+    tamanoBytes: 152913,
     paginas: 4,
   },
   {
@@ -180,14 +180,14 @@ const materialesCap1: Material[] = [
     tipo: 'imagen',
     titulo: 'Infografía: fichajes en GlobalApp',
     url: `${MATERIALES}/cap-1-fichajes-globalapp.png`,
-    tamanoBytes: 0,
+    tamanoBytes: 122271,
   },
   {
     id: 'cap-1-video',
     tipo: 'video',
     titulo: 'Reporting diario en GlobalApp',
     url: `${MATERIALES}/cap-1-reporting-diario.mp4`,
-    tamanoBytes: 0,
+    tamanoBytes: 248718,
     duracionSeg: 20,
   },
   {
@@ -195,7 +195,7 @@ const materialesCap1: Material[] = [
     tipo: 'audio',
     titulo: 'Qué hacer ante una incidencia',
     url: `${MATERIALES}/cap-1-incidencias.mp3`,
-    tamanoBytes: 0,
+    tamanoBytes: 160539,
     duracionSeg: 20,
   },
 ]
@@ -206,7 +206,7 @@ const materialesCap2: Material[] = [
     tipo: 'pdf',
     titulo: 'Prevención de riesgos en el stand',
     url: `${MATERIALES}/cap-2-prevencion-riesgos.pdf`,
-    tamanoBytes: 0,
+    tamanoBytes: 138785,
     paginas: 4,
   },
   {
@@ -214,7 +214,7 @@ const materialesCap2: Material[] = [
     tipo: 'imagen',
     titulo: 'Infografía: datos personales en el punto de venta',
     url: `${MATERIALES}/cap-2-datos-personales.png`,
-    tamanoBytes: 0,
+    tamanoBytes: 122450,
   },
   {
     id: 'cap-2-video',
@@ -223,7 +223,7 @@ const materialesCap2: Material[] = [
     descripcion:
       'Demostración en el stand: comprobar la piel, aplicar en el dorso de la mano y explicar la textura de Hyaluron-Filler sin prometer resultados.',
     url: `${MATERIALES}/cap-2-aplicar-tester.mp4`,
-    tamanoBytes: 0,
+    tamanoBytes: 252348,
     duracionSeg: 20,
   },
   {
@@ -231,7 +231,7 @@ const materialesCap2: Material[] = [
     tipo: 'audio',
     titulo: 'Qué puedes y qué no puedes prometer de un cosmético',
     url: `${MATERIALES}/cap-2-marco-publicitario.mp3`,
-    tamanoBytes: 0,
+    tamanoBytes: 160539,
     duracionSeg: 20,
   },
 ]

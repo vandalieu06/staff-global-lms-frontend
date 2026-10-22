@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { cursoDermoconsejera as curso } from './seed'
@@ -66,5 +66,13 @@ describe('seed', () => {
     const preguntas = curso.capitulos.flatMap((c) => c.test.preguntas.map((p) => p.id))
     expect(new Set(materiales).size).toBe(materiales.length)
     expect(new Set(preguntas).size).toBe(preguntas.length)
+  })
+
+  it('cada material existe en public/ y su tamaño coincide con el del seed', () => {
+    for (const m of curso.capitulos.flatMap((c) => c.materiales)) {
+      const archivo = resolve(process.cwd(), 'public', m.url.replace(/^\//, ''))
+      expect(existsSync(archivo), `${m.url} no existe: ejecuta scripts/generar-materiales-mock.sh`).toBe(true)
+      expect(statSync(archivo).size, `${m.url}: actualiza tamanoBytes en seed.ts`).toBe(m.tamanoBytes)
+    }
   })
 })

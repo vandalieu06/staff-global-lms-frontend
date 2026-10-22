@@ -8,8 +8,15 @@ function Slider({
   value,
   min = 0,
   max = 100,
+  thumbLabel,
+  thumbValueText,
   ...props
-}: React.ComponentProps<typeof SliderPrimitive.Root>) {
+}: React.ComponentProps<typeof SliderPrimitive.Root> & {
+  /** Nombre accesible del control (Radix lo pone en el thumb, que es el elemento con foco). */
+  thumbLabel?: string
+  /** Valor legible para lectores de pantalla, p. ej. «1:12 de 3:40». */
+  thumbValueText?: string
+}) {
   const _values = React.useMemo(
     () =>
       Array.isArray(value)
@@ -46,6 +53,8 @@ function Slider({
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           key={index}
+          aria-label={thumbLabel}
+          aria-valuetext={thumbValueText}
           className="relative block size-3 shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] select-none after:absolute after:-inset-2 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
         />
       ))}

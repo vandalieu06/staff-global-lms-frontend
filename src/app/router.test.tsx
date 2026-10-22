@@ -7,8 +7,16 @@ const cases: Array<[path: string, title: string, hasBottomNav: boolean]> = [
   ['/perfil', 'Perfil', true],
   ['/perfil/contrasena', 'Cambiar contraseña', false],
   ['/cursos/dermoconsejera', 'Dermoconsejera', false],
-  ['/cursos/dermoconsejera/capitulos/cap-2', 'Capítulo', false],
-  ['/cursos/dermoconsejera/capitulos/cap-2/materiales/mat-1', 'Material', false],
+  [
+    '/cursos/dermoconsejera/capitulos/cap-1',
+    'Procedimiento operativo SGG: organización, jornada y GlobalApp',
+    false,
+  ],
+  [
+    '/cursos/dermoconsejera/capitulos/cap-1/materiales/cap-1-imagen',
+    'Infografía: fichajes en GlobalApp',
+    false,
+  ],
   ['/cursos/dermoconsejera/capitulos/cap-2/test', 'Test del capítulo', false],
   ['/cursos/dermoconsejera/capitulos/cap-2/test/intento', 'Pregunta', false],
   ['/cursos/dermoconsejera/capitulos/cap-2/test/resultado', 'Resultado del test', false],
@@ -45,7 +53,7 @@ describe('router', () => {
 
   it('los detalles tienen botón de volver hacia su pantalla padre', async () => {
     conSesion()
-    renderApp('/cursos/dermoconsejera/capitulos/cap-2')
+    renderApp('/cursos/dermoconsejera/capitulos/cap-1')
 
     expect(await screen.findByRole('link', { name: 'Volver' })).toHaveAttribute(
       'href',
