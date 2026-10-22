@@ -22,7 +22,7 @@ discrepan, se para y se pregunta.
 ## Stack y comandos
 
 Vite + React 19, React Router 8 (`react-router`, **no** `react-router-dom`), shadcn/ui +
-Tailwind 4, TypeScript 6, Vitest, **pnpm** (nunca npm ni yarn). Versiones fijadas en
+Tailwind 4, TypeScript 6, Vitest, oxlint, **pnpm** (nunca npm ni yarn). Versiones fijadas en
 `docs/stack.md`; no se actualizan dependencias sin spec.
 
 `pnpm dev` · `pnpm build` · `pnpm test` · `pnpm lint` · `pnpm typecheck`. Antes de dar una
@@ -34,7 +34,8 @@ spec por completada: tests, lint, typecheck y build en verde.
   inglés salvo términos del dominio (`curso`, `capitulo`, `material`, `intento`).
 - **Estructura:** pantallas en `src/features/<área>/`; componentes compartidos en
   `src/components/`; componentes shadcn en `src/components/ui/` (se añaden con
-  `pnpm dlx shadcn@latest add`, no a mano); alias `@/` → `src/`.
+  `pnpm dlx shadcn@4.22.1 add`, no a mano); alias `@/` → `src/`. Cada página exporta
+  `Component` y se registra con `lazy` en `src/app/router.tsx`.
 - **Datos:** las pantallas solo usan `src/api/` y los stores de `src/lib/`; nunca importan
   `src/mocks/` directamente. Las reglas de negocio son funciones puras en `src/lib/rules.ts`.
 - **UI:** cumplir `DESIGN.md`: color plano (el degradado de marca solo en login y curso

@@ -1,0 +1,38 @@
+{
+  "app": {
+    "name": "Staff Global Group",
+    "title": "Staff Global · Formación"
+  },
+  "common": {
+    "back": "Volver",
+    "close": "Cerrar",
+    "comingSoon": "Pantalla en construcción"
+  },
+  "nav": {
+    "label": "Navegación principal",
+    "courses": "Mis cursos",
+    "profile": "Perfil"
+  },
+  "screens": {
+    "login": "Iniciar sesión",
+    "firstAccess": "Crea tu contraseña",
+    "changePassword": "Cambiar contraseña",
+    "courses": "Mis cursos",
+    "profile": "Perfil",
+    "course": "Curso",
+    "chapter": "Capítulo",
+    "material": "Material",
+    "testStart": "Test del capítulo",
+    "testAttempt": "Pregunta",
+    "testResult": "Resultado del test",
+    "finalTestStart": "Test final del curso",
+    "finalTestAttempt": "Pregunta del test final",
+    "finalTestResult": "Resultado del test final",
+    "courseApproved": "Has aprobado el curso"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "La dirección no existe o ya no está disponible.",
+    "action": "Ir a Mis cursos"
+  }
+}

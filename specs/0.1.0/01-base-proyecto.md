@@ -2,7 +2,7 @@
 code: "01"
 title: "Base del proyecto y stack"
 project: "staff-global-lms"
-status: approved # proposed | approved | in-progress | completed
+status: completed # proposed | approved | in-progress | completed
 version: "0.1.0"
 date: 2026-10-22
 tags: [spec, sdd, setup, stack]
@@ -16,8 +16,10 @@ affected_files:
   - tsconfig.json
   - tsconfig.app.json
   - tsconfig.node.json
-  - eslint.config.js
+  - .oxlintrc.json
+  - pnpm-workspace.yaml
   - components.json
+  - public/favicon.svg
   - src/main.tsx
   - src/index.css
   - src/app/router.tsx
@@ -27,13 +29,21 @@ affected_files:
   - src/components/AppHeader.tsx
   - src/components/BottomNav.tsx
   - src/components/StickyFooter.tsx
+  - src/components/ScreenPlaceholder.tsx
+  - src/components/BottomNav.test.tsx
+  - src/app/NotFoundPage.tsx
+  - src/features/**/*Page.tsx
+  - src/features/test/useTestScope.ts
+  - src/types/i18next.d.ts
   - src/lib/utils.ts
   - src/lib/i18n.ts
   - src/locales/es.json
   - src/test/setup.ts
   - src/app/router.test.tsx
   - README.md
+  - AGENTS.md
   - docs/stack.md
+  - specs/0.1.0/00-changelog.md
 ---
 
 # 01 · Base del proyecto y stack
@@ -132,9 +142,35 @@ Los listados en el frontmatter. Todo es nuevo salvo `README.md` (vacío) y `docs
 
 ## Acceptance criteria
 
-- [ ] `pnpm install && pnpm dev` arranca con las versiones de `docs/stack.md`.
-- [ ] Todas las rutas existen y navegan; Mis cursos y Perfil muestran la barra inferior, el resto no.
-- [ ] Botón principal, fondo, radios y fuente coinciden con `DESIGN.md` (inspección visual a 390 px).
-- [ ] Los componentes shadcn listados están en `src/components/ui/`.
-- [ ] Tests, lint, typecheck y build en verde.
-- [ ] `README.md` explica cómo arrancar el proyecto.
+- [x] `pnpm install && pnpm dev` arranca con las versiones de `docs/stack.md`.
+- [x] Todas las rutas existen y navegan; Mis cursos y Perfil muestran la barra inferior, el resto no.
+- [x] Botón principal, fondo, radios y fuente coinciden con `DESIGN.md` (inspección visual a 390 px).
+- [x] Los componentes shadcn listados están en `src/components/ui/` (`field` en lugar de `form`).
+- [x] Tests, lint, typecheck y build en verde.
+- [x] `README.md` explica cómo arrancar el proyecto.
+
+## Implementation notes
+
+Desviaciones respecto a lo propuesto, decididas durante la implementación:
+
+- **Lint con oxlint 1.89.0 en lugar de ESLint.** `create-vite` 9.3.1 ya genera la plantilla
+  `react-ts` con oxlint (`.oxlintrc.json`); se mantiene. Ignora `.agents/` y `.claude/`
+  (scripts de las skills) y desactiva `only-export-components` en `src/components/ui/`.
+- **TypeScript 6.0.3** es la versión que fija la propia plantilla; con oxlint ya no depende de
+  `typescript-eslint`, pero se mantiene hasta validar el compilador 7 en una spec propia.
+- **shadcn 4.22.1** inicializado con `-t vite -b radix -p nova` (estilo `radix-nova`, Radix UI).
+  El componente `form` ya no existe en el registro: se usa **`field`** (con `react-hook-form` +
+  `zod` en la spec 03). Se añadió `skeleton` para los estados de carga. Utilidad `cn` del paquete
+  oficial `cn` (shadcn-ui/cn).
+- **Inter autoalojada** con `@fontsource-variable/inter` en lugar de Google Fonts (sin petición
+  externa; funciona sin red).
+- **Sonner sin `next-themes`**: tema fijo claro (no hay modo oscuro en 0.1.0).
+- **Botón**: tamaños `touch` (48 px, ancho completo) e `icon-touch` (44 px) para cumplir
+  `DESIGN.md`.
+- **Pantallas**: cada módulo de `src/features/` exporta `Component` (carga perezosa con `lazy`) y
+  de momento renderiza `ScreenPlaceholder`. El test final reutiliza las pantallas del test vía
+  `useTestScope`.
+- **pnpm 11** crea `pnpm-workspace.yaml` con `minimumReleaseAgeExclude` para `i18next` y
+  `react-i18next`: sus versiones *latest* son más recientes que la antigüedad mínima de seguridad
+  de pnpm y se aceptan explícitamente.
+- Todas las dependencias con versión exacta (sin `^`).

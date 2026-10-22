@@ -9,7 +9,7 @@ Ver [plan y specs](specs/0.1.0/README.md).
 
 ## Stack
 
-Vite + React 19 · React Router 8 · shadcn/ui + Tailwind CSS 4 · TypeScript · pnpm.
+Vite 8 + React 19 · React Router 8 · shadcn/ui + Tailwind CSS 4 · TypeScript 6 · Vitest · oxlint · pnpm 11.
 Versiones y decisiones en [docs/stack.md](docs/stack.md).
 
 ## Requisitos
@@ -19,15 +19,13 @@ Versiones y decisiones en [docs/stack.md](docs/stack.md).
 
 ## Comandos
 
-> Disponibles cuando se implemente la spec 01.
-
 ```bash
 pnpm install       # dependencias
 pnpm dev           # servidor de desarrollo (accesible desde el móvil en la red local)
 pnpm build         # build de producción
 pnpm preview       # sirve el build
 pnpm test          # tests (Vitest)
-pnpm lint          # ESLint
+pnpm lint          # oxlint
 pnpm typecheck     # comprobación de tipos
 ```
 
