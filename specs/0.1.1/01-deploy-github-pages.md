@@ -2,7 +2,7 @@
 code: "01"
 title: "Despliegue en GitHub Pages desde la rama deploy"
 project: "staff-global-lms"
-status: in-progress # proposed | approved | in-progress | completed
+status: completed # proposed | approved | in-progress | completed
 version: "0.1.1"
 date: 2026-10-22
 tags: [spec, sdd, deploy, ci]
@@ -99,10 +99,24 @@ Los del frontmatter. La configuración del punto 6 se hace por API y se document
 
 ## Acceptance criteria
 
-- [ ] Abrir un PR de `main` a `deploy` ejecuta lint, typecheck, tests y build, y no publica.
-- [ ] Un PR hacia `deploy` desde otra rama falla el check.
-- [ ] Fusionar el PR publica en https://vandalieu06.github.io/staff-global-lms-frontend/.
-- [ ] En la URL pública funcionan el login, la navegación, recargar una ruta profunda y los
+- [x] Abrir un PR de `main` a `deploy` ejecuta lint, typecheck, tests y build, y no publica (PR #2: *Verificar* en 34 s, *Publicar* omitido).
+- [x] Un PR hacia `deploy` desde otra rama falla el check (PR #1, cerrado y rama borrada).
+- [x] Fusionar el PR publica en https://vandalieu06.github.io/staff-global-lms-frontend/ (run 39818641931).
+- [x] En la URL pública funcionan el login, la navegación, recargar una ruta profunda y los
       materiales (PDF, imagen, vídeo, audio y descargas).
-- [ ] No se puede hacer push directo a `deploy`.
-- [ ] `docs/despliegue.md` explica el flujo.
+- [x] No se puede hacer push directo a `deploy` (GH006: *Changes must be made through a pull request*).
+- [x] `docs/despliegue.md` explica el flujo.
+
+## Implementation notes
+
+- **Repo temporal:** público y personal (`vandalieu06`); al conectar con el backend se migrará al
+  repo privado de la empresa (anotado en `docs/despliegue.md`).
+- Al activar Pages, GitHub añadió `main` como rama permitida del entorno `github-pages`; se quitó
+  para que solo `deploy` pueda publicar.
+- Protección de `deploy` con `enforce_admins`: tampoco el propietario puede saltarse el PR.
+  Revisión requerida con 0 aprobaciones (basta con el check en verde).
+- Los PR se fusionan con *merge commit* para conservar el historial de `main` en `deploy`.
+- Probado en local con un servidor estático que imita Pages (base y `404.html`) antes de publicar.
+- Aviso de GitHub: `ubuntu-latest` pasa a Ubuntu 26 desde el 19-10-2026; el workflow no depende de
+  la versión del sistema.
+
